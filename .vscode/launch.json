@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Build and Run Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/standard_env/builddir/program",
+            "args": [],
+            "cwd": "${workspaceFolder}/standard_env",
+            "preLaunchTask": "Build Executable",
+            "internalConsoleOptions": "neverOpen",
+        }
+    ]
+}

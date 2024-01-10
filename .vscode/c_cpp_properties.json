@@ -1,0 +1,57 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/standard_env/**",
+                "${workspaceFolder}/standard_env/subprojects/animationwindow/include/**",
+                "${workspaceFolder}/standard_env/subprojects/sdl2_image_windows/include/**",
+                "${workspaceFolder}/standard_env/subprojects/sdl2_windows/include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "compilerPath": "C:\\mingw64\\bin\\clang",
+            "compileCommands": "${workspaceFolder}/standard_env/builddir/compile_commands.json",
+            "intelliSenseMode": "windows-clang-x64"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/standard_env/**",
+                "${workspaceFolder}/standard_env/subprojects/animationwindow/include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "compileCommands": "standard_env/builddir/compile_commands.json",
+            "intelliSenseMode": "macos-clang-x64"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/standard_env/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "compileCommands": "standard_env/builddir/compile_commands.json",
+            "intelliSenseMode": "linux-clang-x64",
+            "compilerPath": "/usr/bin/g++"
+        }
+    ],
+    "version": 4
+}
+  
