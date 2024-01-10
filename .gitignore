@@ -1,5 +1,5 @@
 # ignore standard_env for now as i cant get it to reliably work
-# standard_env
+standard_env
 
 
 # Ignore build output directory
