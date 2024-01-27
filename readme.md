@@ -60,6 +60,13 @@ This project uses Meson for its build system. To compile the project, follow the
    Replace `your_executable_name` with the name of your project's executable.
 
 
+4. **missing files when compile**:  
+    The builddir seems to be missing some files which stops the project from working  nemely: `SDL2.dll`, `SDL2_image.dll`, `meson-vscode.env` and `libstdc++-6.dll`.  
+    For now i will add theese files to the `missing_files` dir and you have to move theese into `builddir` after setting up the builddir in step 1.
+
+
+
+
 ## Running the Code Using VSCode Debugger
 
 ### Debugging the Project

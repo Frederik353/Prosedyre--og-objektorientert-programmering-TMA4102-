@@ -438,8 +438,7 @@ int main() {
   std::cout << "Vil du kjore alle oppgaver fra valgt oppgave? (ja/nei): ";
   std::string response;
   std::cin >> response;
-  bool runAll =
-      (response == "ja"); // Changed "yes" to "ja" based on your prompt
+  bool runAll = (response == "ja");
 
   if (runAll) {
     for (const auto &taskPair : tasks) {
