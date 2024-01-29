@@ -10,10 +10,10 @@ void showTask(int task, char subTask) {
   cout << " ------ Oppgave " << task << " " << subTask << " ------" << endl;
 
   switch (task) {
-  case 4: {
+  case 5: {
     switch (subTask) {
-    case 'd': {
-      cout << "testing" << endl;
+    case 'c': {
+      playTargetPractice();
       break;
     }
 
@@ -36,7 +36,7 @@ void showTask(int task, char subTask) {
 int main() {
 
   std::vector<std::pair<int, std::vector<char>>> tasks = {
-      {3, {'c'}},
+      {5, {'c'}},
   };
 
   std::cout << "Vil du kjore alle oppgaver fra valgt oppgave? (ja/nei): ";

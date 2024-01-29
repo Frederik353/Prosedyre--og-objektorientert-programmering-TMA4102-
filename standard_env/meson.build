@@ -49,7 +49,8 @@ inc_dirs = include_directories('src')
 src = [
     'src/main.cpp',
     'src/cannonball.cpp',
-    'src/cannonball.h',
+    'src/utils.cpp',
+    'src/cannonball_viz.cpp',
  ]
 
 exe = executable(
@@ -65,8 +66,11 @@ exe = executable(
 
 # inc_dirs = include_directories('tests')
 
-tests = [ 'tests/tests.cpp' ,
+tests = [ 
+    'tests/tests.cpp' ,
     'src/cannonball.cpp',
+    'src/utils.cpp',
+    'src/cannonball_viz.cpp',
 ]
 
 test_executable = executable(

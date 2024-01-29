@@ -45,22 +45,38 @@ void testDegToRad() {
 }
 
 void testGetVelocityX() {
+  static_assert(std::is_same<decltype(getVelocityX(0, 10)), double>::value,
+                "x is not an int");
+
   assert(getVelocityX(0, 10) == 10);
-  assert(getVelocityX(90, 10) == 0);
+  cerr << "get velocity x 0 10: " << getVelocityX(90, 10) << endl;
+  cerr << "get velocity x 90 10: " << std::setprecision(10)
+       << getVelocityX(90, 10) << endl;
+
+  const double epsilon = 1e-6;
+  assert(std::abs(getVelocityX(90, 10) - 6.12303e-16) < epsilon);
 }
 
 void testGetVelocityY() {
-  assert(getVelocityY(0, 10) == 0);
-  assert(getVelocityY(90, 10) == 10);
+  assert(getVelocityY(0, 10) == 0.0);
+  assert(getVelocityY(90, 10) == 10.0);
 }
 
 void testGetVelocityVector() {
+
   vector<double> testVec;
   testVec = getVelocityVector(0, 10);
   assert(testVec[0] == 10 && testVec[1] == 0);
 
   testVec = getVelocityVector(90, 10);
-  assert(testVec[0] == 0 && testVec[1] == 10);
+
+  for (auto i : testVec) {
+    cerr << i << endl;
+  }
+
+  const double epsilon = 1e-6;
+  assert(std::abs(testVec[0] - 6.12303e-16) < epsilon &&
+         std::abs(testVec[1] - 10) < epsilon);
 }
 
 void testGetDistanceTraveled() {

@@ -1,4 +1,6 @@
+#include "cannonball_viz.h"
 #include "std_lib_facilities.h"
+#include "utils.h"
 #include <cmath>
 #include <vector>
 
@@ -23,12 +25,19 @@ double posX(double initPositionX, double initVelocityX, double time) {
 
 // oppgave 1 d
 void printTime(double time) {
-  int hours = static_cast<int>(std::round((time / 3600)));
-  int minutes = static_cast<int>(std::round((time - hours * 3600) / 60));
-  int seconds =
-      static_cast<int>(std::round(time - hours * 3600 - minutes * 60));
-  cout << "Time: " << hours << " hours, " << minutes << " minutes, " << seconds
-       << " seconds" << endl;
+  int h = static_cast<int>(std::round((time / 3600)));
+  int min = static_cast<int>(std::round((time - h * 3600) / 60));
+  int sec = static_cast<int>(std::round(time - h * 3600 - min * 60));
+  if (h > 0) {
+    cout << h << " timer, ";
+  }
+  if (min > 0) {
+    cout << min << " minutter ";
+  }
+  if (h != 0 || min != 0) {
+    cout << "og ";
+  }
+  cout << sec << " sekunder";
 }
 
 // oppgave 1 e
@@ -49,7 +58,7 @@ double inputDouble() {
 // Ber brukeren om en vinkel i grader
 double getUserInputTheta() {
   double value;
-  cout << "skriv inn en vinkel i grader:";
+  cout << "skriv inn en vinkel i grader: ";
   cin >> value;
   return value;
 }
@@ -57,7 +66,7 @@ double getUserInputTheta() {
 // Ber brukeren om en startfart
 double getUserInputInitVelocity() {
   double value;
-  cout << "skriv inn en startfart:";
+  cout << "skriv inn en startfart: ";
   cin >> value;
   return value;
 }
@@ -96,4 +105,43 @@ double targetPractice(double distanceToTarget, double velocityX,
                       double velocityY) {
   double distanceTraveled = getDistanceTraveled(velocityX, velocityY);
   return distanceToTarget - distanceTraveled;
+}
+
+void playTargetPractice() {
+  int target = randomWithLimits(100, 1000);
+  bool hit = false;
+  for (int i = 0; i < 10; i++) {
+    double theta = getUserInputTheta();
+    double velocity = getUserInputInitVelocity();
+    vector<double> velocityVector = getVelocityVector(theta, velocity);
+
+    double distanceToTarget =
+        targetPractice(target, velocityVector[0], velocityVector[1]);
+    if (abs(distanceToTarget) < 5) {
+      hit = true;
+      break;
+    }
+
+    cout << "-------------------------------" << endl << endl;
+    cout << "distanse til maal: " << distanceToTarget << endl;
+    cout << "skuddet var for " << (distanceToTarget > 0 ? "kort" : "langt")
+         << endl;
+
+    cout << "kulen brukte: ";
+    printTime(flightTime(velocityVector[1]));
+    cout << " i luften" << endl;
+    // 120 hz
+    int hz = 60;
+    double speed = 1;
+    double vizTime = (flightTime(velocityVector[1]) / speed);
+    cannonBallViz(target, 1000, velocityVector[0], velocityVector[1],
+                  static_cast<int>(std::ceil(vizTime)) * hz, vizTime);
+  }
+
+  if (hit) {
+
+    cout << "Gratulerer, du traff!" << endl;
+  } else {
+    cout << "" << endl;
+  }
 }

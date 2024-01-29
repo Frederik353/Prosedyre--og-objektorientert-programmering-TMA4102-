@@ -34,3 +34,5 @@ double getDistanceTraveled(double velocityX, double velocityY);
 
 double targetPractice(double distanceToTarget, double velocityX,
                       double velocityY);
+
+void playTargetPractice();
