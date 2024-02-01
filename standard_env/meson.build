@@ -44,14 +44,14 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 # subdir('src')
 
 
-inc_dirs = include_directories('src')
+# inc_dirs = include_directories('src')
+inc_dirs = include_directories('./include')
 
 src = [
     'src/main.cpp',
-    'src/cannonball.cpp',
     'src/utils.cpp',
-    'src/cannonball_viz.cpp',
- ]
+
+]
 
 exe = executable(
   'program',
@@ -65,19 +65,17 @@ exe = executable(
 # ------------- tests ----------------
 
 # inc_dirs = include_directories('tests')
+test_inc_dirs = include_directories('./tests/include')
 
 tests = [ 
     'tests/tests.cpp' ,
-    'src/cannonball.cpp',
-    'src/utils.cpp',
-    'src/cannonball_viz.cpp',
 ]
 
 test_executable = executable(
     'run_tests',
     tests,
     dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
-    include_directories: inc_dirs
+    include_directories: test_inc_dirs
 )
 
 
