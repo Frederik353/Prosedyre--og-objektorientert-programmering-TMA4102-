@@ -1,7 +1,6 @@
 # ignore standard_env for now as i cant get it to work reliably
 # standard_env
 
-
 # Ignore build output directory
 standard_env/builddir/
 
@@ -48,3 +47,5 @@ compile_commands.json
 
 # Keep .vscode files
 !.vscode/
+
+!/missing_files/*.dll
