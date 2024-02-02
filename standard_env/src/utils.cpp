@@ -1,6 +1,12 @@
+#pragma once
+
 #include "utils.h"
+#include <algorithm>
+#include <cctype>
 #include <iostream>
 #include <random>
+#include <string>
+
 // #include <utility>
 
 int incrementByValueNumTimes(int startValue, int increment, int numTimes) {
@@ -34,12 +40,14 @@ void printStudent(student s) {
 
 // oppgave 2 c
 
-bool studiesProgram(student s, std::string studyProgram) {
+bool studieProgram(student s, std::string studyProgram) {
   return s.studyProgram == studyProgram;
 }
 
 // oppgave b b
 std::string randomizeString(int length, char lower, char upper) {
+  lower = std::toupper(lower);
+  upper = std::toupper(upper);
   if (upper < lower) {
     std::swap(upper, lower);
   }
@@ -49,11 +57,41 @@ std::string randomizeString(int length, char lower, char upper) {
 
   std::string randomString;
   for (int i = 0; i < length; i++) {
-    char c = distribution(generator);
+    char c = static_cast<char>(distribution(generator));
     std::cout << c;
     randomString += c;
   }
-  std::endl;
+  std::cout << std::endl;
+  return randomString;
 }
 
-std::string
+std::string readInputToString(int length, char lower, char upper) {
+
+  lower = std::toupper(lower);
+  upper = std::toupper(upper);
+  std::string input;
+  char c;
+  int count = 0;
+  while (count < length) {
+    std::cin >> c;
+    c = std::toupper(c);
+    if (c >= lower && c <= upper) {
+      input += c;
+      count++;
+    }
+  }
+  return input;
+}
+
+int countChar(std::string str, char c) {
+  std::transform(str.begin(), str.end(), str.begin(),
+                 [](unsigned char c) { return std::toupperj(c); });
+  c = std::toupper(c);
+  int count = 0;
+  for (int i = 0; i < str.length(); i++) {
+    if (str[i] == c) {
+      count++;
+    }
+  }
+  return count;
+}

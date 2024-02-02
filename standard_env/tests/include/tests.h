@@ -1,11 +1,11 @@
+#pragma once
 
 void testCallByValue();
 
 void testCallByRef();
 
-void testStudiesProgram();
-
+void testStudieProgram();
 
 void testString();
 
-
+void countChartest();

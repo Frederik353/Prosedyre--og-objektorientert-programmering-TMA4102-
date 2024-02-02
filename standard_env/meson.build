@@ -50,7 +50,6 @@ inc_dirs = include_directories('./include')
 src = [
     'src/main.cpp',
     'src/utils.cpp',
-
 ]
 
 exe = executable(
@@ -69,13 +68,14 @@ test_inc_dirs = include_directories('./tests/include')
 
 tests = [ 
     'tests/tests.cpp' ,
+    'src/utils.cpp',
 ]
 
 test_executable = executable(
     'run_tests',
     tests,
     dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
-    include_directories: test_inc_dirs
+    include_directories: [test_inc_dirs, inc_dirs]
 )
 
 

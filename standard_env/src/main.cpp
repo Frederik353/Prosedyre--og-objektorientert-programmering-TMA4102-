@@ -1,6 +1,6 @@
 // #include "AnimationWindow.h"
 #include "std_lib_facilities.h"
-
+#include "utils.h"
 #include <iostream>
 #include <vector>
 
@@ -15,14 +15,12 @@ redefinerer flere funksjoner må ha header guards
 
 #endif // header.h
 
-eller 
+eller
 
 #pragma once
 
 ikke i cpp standard men fungerer på de fleste kompilatorer
 */
-
-
 
 // #-- -- -- -- -- -- -- -- -- -- -- -- presentation -- -- -- -- -- -- -- -- --
 
@@ -36,19 +34,37 @@ void showTask(int task, char subTask) {
       cout << "v0: 5" << endl << "pass by value" << endl;
       break;
     }
+    case 'b': {
+      cout << "description" << endl;
+      break;
+    }
     case 'c': {
       cout << "description" << endl;
       break;
     }
-    case 'a': {
+    case 'd': {
       cout << "description" << endl;
       break;
     }
-    case 'a': {
-      cout << "description" << endl;
+    }
+    break;
+  }
+  case 3: {
+    switch (subTask) {
+    case 'b': {
+      int length;
+      char lower;
+      char upper;
+      cout << "randomize string" << endl;
+      cout << "skriv inn lengde:";
+      cin >> length;
+      cout << "skriv inn nedre grense:";
+      cin >> lower;
+      cout << "skriv inn ovre grense:";
+      cin >> upper;
+      randomizeString(length, lower, upper);
       break;
     }
-
     default: {
       cout << "invalid subtask" << endl;
       break;
@@ -56,7 +72,20 @@ void showTask(int task, char subTask) {
     }
     break;
   }
+  case 4: {
+    switch (subTask) {
+    case 'a': {
+      cout << "play";
 
+      break;
+    }
+    default: {
+      cout << "invalid subtask" << endl;
+      break;
+    }
+    }
+    break;
+  }
   default: {
     cout << "invalid task" << endl;
 
@@ -69,6 +98,7 @@ int main() {
 
   std::vector<std::pair<int, std::vector<char>>> tasks = {
       {1, {'b', 'c', 'd', 'f'}},
+      {3, {'b', 'c', 'd', 'f'}},
   };
 
   std::cout << "Vil du kjore alle oppgaver fra valgt oppgave? (ja/nei): ";
