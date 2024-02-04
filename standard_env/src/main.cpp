@@ -1,6 +1,9 @@
 // #include "AnimationWindow.h"
+#include "masterVisual.h"
+#include "mastermind.h"
 #include "std_lib_facilities.h"
 #include "utils.h"
+#include <bits/c++config.h>
 #include <iostream>
 #include <vector>
 
@@ -73,19 +76,17 @@ void showTask(int task, char subTask) {
     break;
   }
   case 4: {
-    switch (subTask) {
-    case 'a': {
-      cout << "play";
-
-      break;
-    }
-    default: {
-      cout << "invalid subtask" << endl;
-      break;
-    }
-    }
+    cout << "play mastermind" << endl;
+    playMasterMind();
     break;
   }
+  case 5: {
+    cout << "play mastermind visual" << endl;
+    playMastermindVisual();
+
+    break;
+  }
+
   default: {
     cout << "invalid task" << endl;
 
@@ -99,6 +100,8 @@ int main() {
   std::vector<std::pair<int, std::vector<char>>> tasks = {
       {1, {'b', 'c', 'd', 'f'}},
       {3, {'b', 'c', 'd', 'f'}},
+      {4, {'b'}},
+      {5, {'a'}},
   };
 
   std::cout << "Vil du kjore alle oppgaver fra valgt oppgave? (ja/nei): ";

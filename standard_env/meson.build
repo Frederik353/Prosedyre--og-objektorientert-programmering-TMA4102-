@@ -50,6 +50,8 @@ inc_dirs = include_directories('./include')
 src = [
     'src/main.cpp',
     'src/utils.cpp',
+    'src/mastermind.cpp',
+    'src/masterVisual.cpp',
 ]
 
 exe = executable(
@@ -69,6 +71,8 @@ test_inc_dirs = include_directories('./tests/include')
 tests = [ 
     'tests/tests.cpp' ,
     'src/utils.cpp',
+    'src/mastermind.cpp',
+    'src/masterVisual.cpp',
 ]
 
 test_executable = executable(

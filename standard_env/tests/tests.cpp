@@ -1,7 +1,9 @@
 #include "tests.h"
+#include "mastermind.h"
 #include "utils.h"
 #include <cassert>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
 
@@ -52,11 +54,34 @@ void countChartest() {
   std::cout << "countChar passed" << std::endl;
 }
 
+void checkCharactersTest() {
+
+  std::cout << "check characters test" << std::endl;
+  std::cout << "Test 1: " << checkCharacters('a', 'z', "hello", "hello")
+            << " (Expected: 5)" << std::endl;
+  std::cout << "Test 2: " << checkCharacters('a', 'z', "hello", "world")
+            << " (Expected: 2)" << std::endl;
+  std::cout << "Test 3: " << checkCharacters('a', 'z', "abc", "xyz")
+            << " (Expected: 0)" << std::endl;
+  std::cout << "Test 4: " << checkCharacters(' ', '~', "h@llo", "w@rld")
+            << " (Expected: 2)" << std::endl;
+  std::cout << "Test 5: " << checkCharacters('A', 'Z', "HELLO", "hello")
+            << " (Expected: 0)" << std::endl;
+  std::cout << "Test 6: " << checkCharacters('\0', '\xFF', "hello", "world")
+            << " (Expected: 1)" << std::endl;
+  std::cout << "Test 7: " << checkCharacters('a', 'z', "", "")
+            << " (Expected: 0)" << std::endl;
+  std::cout << "Test 8: " << checkCharacters('a', 'z', "hello", "")
+            << " (Expected: 0)" << std::endl;
+}
+
 int main() {
   testCallByValue();
   testCallByRef();
   testStudieProgram();
   testString();
   countChartest();
+  checkCharactersTest();
+
   return 0;
 }

@@ -1,4 +1,3 @@
-#pragma once
 
 #include "utils.h"
 #include <algorithm>
@@ -72,6 +71,8 @@ std::string readInputToString(int length, char lower, char upper) {
   std::string input;
   char c;
   int count = 0;
+  std::cout << "Skriv inn " << length << " bokstaver mellom " << lower << " og "
+            << upper << std::endl;
   while (count < length) {
     std::cin >> c;
     c = std::toupper(c);
@@ -83,12 +84,16 @@ std::string readInputToString(int length, char lower, char upper) {
   return input;
 }
 
-int countChar(std::string str, char c) {
+void stringToUpper(std::string &str) {
   std::transform(str.begin(), str.end(), str.begin(),
-                 [](unsigned char c) { return std::toupperj(c); });
+                 [](unsigned char c) { return std::toupper(c); });
+}
+
+int countChar(std::string str, char c) {
+  stringToUpper(str);
   c = std::toupper(c);
   int count = 0;
-  for (int i = 0; i < str.length(); i++) {
+  for (size_t i = 0; i < str.length(); i++) {
     if (str[i] == c) {
       count++;
     }
