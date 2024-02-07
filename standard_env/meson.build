@@ -28,6 +28,8 @@ endif
 
 # ---------------- my setup ----------------
 
+
+
 # std_lib_facilities_dep = dependency('std_lib_facilities', fallback: ['std_lib_facilities', 'std_lib_facilities_dep'])
 std_lib_facilities_dep = subproject('std_lib_facilities')
 std_lib_facilities_dep = std_lib_facilities_dep.get_variable('std_lib_facilities_dep')
@@ -48,15 +50,13 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 inc_dirs = include_directories('./include')
 
 src = [
-    'src/main.cpp',
     'src/utils.cpp',
-    'src/mastermind.cpp',
-    'src/masterVisual.cpp',
+    'src/card.cpp',
 ]
 
 exe = executable(
   'program',
-  src,
+  [src, './src/main.cpp'],
   dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
   cpp_args : compiler_flags,
   include_directories: inc_dirs,
@@ -65,20 +65,21 @@ exe = executable(
 
 # ------------- tests ----------------
 
+gtest_proj = subproject('gtest')
+gtest_dep  = gtest_proj.get_variable('gtest_main_dep')
+gmock_dep  = gtest_proj.get_variable('gmock_dep')
+
 # inc_dirs = include_directories('tests')
 test_inc_dirs = include_directories('./tests/include')
 
 tests = [ 
-    'tests/tests.cpp' ,
-    'src/utils.cpp',
-    'src/mastermind.cpp',
-    'src/masterVisual.cpp',
+    'tests/tests.cpp',
 ]
 
 test_executable = executable(
     'run_tests',
-    tests,
-    dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
+    [tests, src],
+    dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep, gtest_dep, gmock_dep],
     include_directories: [test_inc_dirs, inc_dirs]
 )
 
