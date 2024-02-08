@@ -10,4 +10,7 @@ private:
 public:
   std::string getName();
   void addCardToHand(Card card);
+  int getHandSum();
+  void printHand();
+  void printHandShort();
 }

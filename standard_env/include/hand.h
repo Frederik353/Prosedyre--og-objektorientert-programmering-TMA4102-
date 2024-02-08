@@ -8,8 +8,9 @@ private:
   int handSum;
 
 public:
-  int sumHand();
+//   int sumHand();
   int getHandSum();
   bool isAce();
   int getCardValue();
+  void addCard(const Card &card);
 };

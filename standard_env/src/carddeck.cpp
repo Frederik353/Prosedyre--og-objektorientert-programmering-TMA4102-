@@ -22,3 +22,6 @@ void CardDeck::shuffle(int swaps = 100) {
     swap(k, j);
   }
 }
+
+// oppgave 2 f
+bool CardDeck::drawCard() { return drawCardByIndex(cards.size() - 1) }

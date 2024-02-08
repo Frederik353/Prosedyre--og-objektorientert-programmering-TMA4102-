@@ -11,9 +11,15 @@ int Hand::getCardValue(Card card) {
 
 int Hand::getHandSum() { return handSum; }
 
-int Hand::sumHand() {
-  handSum = 0;
-  for (Card card : cards) {
-    handSum += getCardValue(card);
-  }
+// int Hand::sumHand() {
+//   handSum = 0;
+//   for (Card card : cards) {
+//     handSum += getCardValue(card);
+//   }
+// }
+
+void Hand::addCard(const Card &card) override {
+  CardCollection::addCard(card); // Call base class implementation
+  handSum += getCardValue(card);
+  // sumHand()
 }

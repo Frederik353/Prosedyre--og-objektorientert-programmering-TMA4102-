@@ -4,4 +4,5 @@
 class CardDeck : public CardCollection {
 public:
   void shuffle();
+  bool drawCard();
 }
