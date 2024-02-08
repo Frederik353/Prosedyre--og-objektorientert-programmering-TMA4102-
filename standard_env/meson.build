@@ -52,6 +52,7 @@ inc_dirs = include_directories('./include')
 src = [
     'src/utils.cpp',
     'src/card.cpp',
+    'src/blackjack.cpp',
 ]
 
 exe = executable(

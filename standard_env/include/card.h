@@ -21,6 +21,18 @@ enum class Rank {
   ACE = 14
 };
 
-std::string suitToString(Suit suit);
+// oppgave 2 a
+class Card {
+private:
+  Suit s;
+  Rank r;
 
-std::string rankToString(Rank rank);
+public:
+  Card(Suit suit, Rank rank);
+  Suit getSuit();
+  Rank getRank();
+  std::string rankToString();
+  std::string rankToShortString();
+  std::string suitToString();
+  std::string suitToShortString();
+};
