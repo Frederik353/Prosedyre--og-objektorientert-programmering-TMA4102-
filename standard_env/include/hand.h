@@ -1,16 +1,17 @@
 #pragma once
 #include "card.h"
-#include "cardColletion.h"
+#include "cardCollection.h"
 #include <vector>
 
 class Hand : public CardCollection {
 private:
-  int handSum;
+  int handSum = 0;
 
 public:
-//   int sumHand();
+  Hand() = default;
+  //   int sumHand();
   int getHandSum();
-  bool isAce();
-  int getCardValue();
-  void addCard(const Card &card);
+  bool isAce(Card card);
+  int getCardValue(Card card);
+  void addCard(const Card &card) override;
 };

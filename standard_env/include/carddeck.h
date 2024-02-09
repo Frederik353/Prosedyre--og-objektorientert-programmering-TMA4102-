@@ -1,8 +1,8 @@
 #include "card.h"
-#include "cardcollection.h"
+#include "cardCollection.h"
 
 class CardDeck : public CardCollection {
 public:
-  void shuffle();
-  bool drawCard();
-}
+  CardDeck() noexcept;
+  void shuffle(int swaps = 100);
+};

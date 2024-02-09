@@ -8,9 +8,11 @@ private:
   std::string name;
 
 public:
+  Player(const std::string name) : name{name} {};
   std::string getName();
-  void addCardToHand(Card card);
+  void addCardToHand(const Card &card);
   int getHandSum();
-  void printHand();
-  void printHandShort();
-}
+  void printHand(int numFirstCards = -1);
+  void getCard();
+  void printHandShort(int numFirstCards = -1);
+};

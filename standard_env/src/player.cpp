@@ -6,6 +6,11 @@ std::string Player::getName() { return name; }
 void Player::addCardToHand(const Card &card) { hand.addCard(card); }
 
 int Player::getHandSum() { return hand.getHandSum(); }
-void printHand() { hand.print(); };
 
-void printHandShort() { hand.printShort(); };
+// -1 means print all cards
+void Player::printHand(int numFirstCards) { hand.print(numFirstCards); };
+
+// -1 means print all cards
+void Player::printHandShort(int numFirstCards) {
+  hand.printShort(numFirstCards);
+};

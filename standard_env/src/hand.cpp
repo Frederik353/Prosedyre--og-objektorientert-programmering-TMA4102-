@@ -18,7 +18,7 @@ int Hand::getHandSum() { return handSum; }
 //   }
 // }
 
-void Hand::addCard(const Card &card) override {
+void Hand::addCard(const Card &card) {
   CardCollection::addCard(card); // Call base class implementation
   handSum += getCardValue(card);
   // sumHand()

@@ -50,9 +50,13 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 inc_dirs = include_directories('./include')
 
 src = [
-    'src/utils.cpp',
-    'src/card.cpp',
     'src/blackjack.cpp',
+    'src/card.cpp',
+    'src/cardCollection.cpp',
+    'src/carddeck.cpp',
+    'src/hand.cpp',
+    'src/player.cpp',
+    'src/utils.cpp',
 ]
 
 exe = executable(
@@ -74,7 +78,8 @@ gmock_dep  = gtest_proj.get_variable('gmock_dep')
 test_inc_dirs = include_directories('./tests/include')
 
 tests = [ 
-    'tests/tests.cpp',
+    'tests/card_test.cpp',
+    'tests/cardCollection_test.cpp',
 ]
 
 test_executable = executable(

@@ -35,4 +35,9 @@ public:
   std::string rankToShortString();
   std::string suitToString();
   std::string suitToShortString();
+  std::string toString();
+  std::string toShortString();
+  bool operator==(const Card &other) const {
+    return r == other.r && s == other.s;
+  }
 };

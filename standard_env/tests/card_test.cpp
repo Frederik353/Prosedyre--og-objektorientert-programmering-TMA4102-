@@ -13,13 +13,13 @@ forventede
 }
 */
 TEST(CardTest, testRankToString) {
-  Rank r = Rank::ACE;
-  EXPECT_EQ("Ace", rankToString(r));
+  Card card(Suit::HEARTS, Rank::ACE);
+  EXPECT_EQ("Ace", card.rankToString());
 }
 
 TEST(CardTest, testSuitToString) {
-  Suit s = Suit::HEARTS;
-  EXPECT_EQ("Hearts", suitToString(s));
+  Card card(Suit::HEARTS, Rank::ACE);
+  EXPECT_EQ("Hearts", card.suitToString());
 }
 
 // oppgave 2 f
@@ -44,6 +44,8 @@ TEST(CardTest, ToStringTest) {
   std::string expectedString = "Queen of Spades";
   EXPECT_EQ(card.toString(), expectedString);
 }
+
+// todo toShortString
 
 // int main(int argc, char **argv)
 // {

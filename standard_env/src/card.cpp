@@ -42,7 +42,7 @@ std::string Card::suitToShortString() {
 }
 
 std::string Card::rankToString() {
-  switch (s) {
+  switch (r) {
   case Rank::TWO:
     return "Two";
   case Rank::THREE:
@@ -108,10 +108,10 @@ std::string Card::rankToShortString() {
 }
 
 // // oppgave 2 c
-// Suit Card::getSuit() { return s; }
+Suit Card::getSuit() { return s; }
 
 // // oppgave 2 d
-// Rank Card::getRank() { return r; }
+Rank Card::getRank() { return r; }
 
 // oppgave 2 e
 std::string Card::toString() {
