@@ -1,5 +1,6 @@
 #include "hand.h"
 #include <string>
+#include <vector>
 
 class Player {
 private:
@@ -11,7 +12,7 @@ public:
   Player(const std::string name) : name{name} {};
   std::string getName();
   void addCardToHand(const Card &card);
-  int getHandSum();
+  std::vector<int> getHandSum();
   void printHand(int numFirstCards = -1);
   void getCard();
   void printHandShort(int numFirstCards = -1);
