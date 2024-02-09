@@ -1,9 +1,7 @@
 # TDT4102 - Prosedyre- og objektorientert programmering Homework Repo
 
 ## Overview
-This repository contains my homework submissions for the course TDT4102 - Prosedyre- og objektorientert programmering for the 2024 spring on NTNU trondheim. It primarily focuses on assignments and projects involving procedural and object-oriented programming in C++.
-
-Including instructions for running your C++ code using the debugger in Visual Studio Code (VSCode) is a great idea, especially since it seems to be the standard practice in your course. I'll provide a modified version of the `README.md` with additional steps for running the code using VSCode's debugger:
+This repository contains my homework submissions for the course TDT4102 - Prosedyre- og objektorientert programmering for the 2024 spring on NTNU trondheim.
 
 ---
 ## Compilation Instructions
