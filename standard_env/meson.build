@@ -28,35 +28,23 @@ endif
 
 # ---------------- my setup ----------------
 
+# configure_file(input: './missing_files/libstdc++-6.dll', output: 'libstdc++-6.dll', copy: true)
+# configure_file(input: './missing_files/meson-vscode.env', output: 'meson-vscode.env', copy: true)
+# configure_file(input: './missing_files/SDL2_image.dll', output: 'SDL2_image.dll', copy: true)
+# configure_file(input: './missing_files/SDL2.dll', output: 'SDL2.dll', copy: true)
 
 
-# std_lib_facilities_dep = dependency('std_lib_facilities', fallback: ['std_lib_facilities', 'std_lib_facilities_dep'])
+
+
 std_lib_facilities_dep = subproject('std_lib_facilities')
 std_lib_facilities_dep = std_lib_facilities_dep.get_variable('std_lib_facilities_dep')
-
-# std_lib_facilities_dep = dependency('std_lib_facilities')
-# std_lib_facilities_dep = std_lib_facilities_dep.get_variable('std_lib_facilities_dep')
-
 
 animationwindow_dep = subproject('animationwindow').get_variable('animationwindow_dep')
 
 
-
-# This triggers the builds of sources
-# subdir('src')
-
-
-# inc_dirs = include_directories('src')
 inc_dirs = include_directories('./include')
 
 src = [
-    'src/blackjack.cpp',
-    'src/card.cpp',
-    'src/cardCollection.cpp',
-    'src/carddeck.cpp',
-    'src/hand.cpp',
-    'src/player.cpp',
-    'src/utils.cpp',
 ]
 
 exe = executable(
@@ -78,8 +66,6 @@ gmock_dep  = gtest_proj.get_variable('gmock_dep')
 test_inc_dirs = include_directories('./tests/include')
 
 tests = [ 
-    'tests/card_test.cpp',
-    'tests/cardCollection_test.cpp',
 ]
 
 test_executable = executable(
