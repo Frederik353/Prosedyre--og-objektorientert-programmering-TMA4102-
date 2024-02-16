@@ -1,22 +1,41 @@
-#include "CourseCatalog.h"
+#include "courseCatalog.h"
+#include <cstdio>
 #include <gtest/gtest.h>
+
+class CourseCatalogTest : public ::testing::Test {
+protected:
+  // Setup run before each test
+  CourseCatalog catalog;
+  void SetUp() override { catalog.clearCourses(); }
+
+  // Teardown run after each test
+  void TearDown() override {
+    const char *filename = "courses.csv";
+
+    if (remove(filename) != 0) {
+      perror("Error deleting file");
+    } else {
+      puts("File successfully deleted");
+    }
+  }
+};
 
 TEST_F(CourseCatalogTest, AddAndGetCourse) {
   std::string courseName = "Prosedyre- og objektorientert programmering";
   std::string courseCode = "TDT4102";
-  catalog.addCourse(courseName, courseCode);
-  EXPECT_EQ(catalog.getCourse(courseName), courseCode);
+  catalog.addCourse(courseCode, courseName);
+  EXPECT_EQ(catalog.getCourse(courseCode), courseName);
 }
 
 TEST_F(CourseCatalogTest, RemoveCourse) {
   std::string courseName = "Matematikk 1";
   std::string courseCode = "TMA4100";
-  catalog.addCourse(courseName, courseCode);
-  catalog.removeCourse(courseName);
+  catalog.addCourse(courseCode, courseName);
+  catalog.removeCourse(courseCode);
   EXPECT_THROW(
       {
         try {
-          catalog.getCourse(courseName);
+          catalog.getCourse(courseCode);
         } catch (const std::out_of_range &e) {
           // Forventet unntak ved forsøk på å hente et kurs som ikke finnes
           throw;
@@ -29,18 +48,29 @@ TEST_F(CourseCatalogTest, RemoveCourse) {
 
 TEST_F(CourseCatalogTest, PrintCatalog) {
   catalog.addCourse("TMA4100", "Matematikk 1");
-  catalog.addCourse("TDT4102", "Prosedyre- og objektorientert programmering");
   catalog.addCourse("TDT4109", "Informasjonsteknologi grunnkurs");
+  catalog.addCourse("TDT4102", "Prosedyre- og objektorientert programmering");
 
   std::stringstream output;
   output << catalog;
 
   std::string expected =
-      "Emnekode: TDT4109, Emnenavn: Informasjonsteknologi grunnkurs\n"
       "Emnekode: TDT4102, Emnenavn: Prosedyre- og objektorientert "
       "programmering\n"
+      "Emnekode: TDT4109, Emnenavn: Informasjonsteknologi grunnkurs\n"
       "Emnekode: TMA4100, Emnenavn: Matematikk 1\n";
 
+  EXPECT_EQ(output.str(), expected);
+
+  //   change course name
+  expected = "Emnekode: TDT4102, Emnenavn: c++\n"
+             "Emnekode: TDT4109, Emnenavn: Informasjonsteknologi grunnkurs\n"
+             "Emnekode: TMA4100, Emnenavn: Matematikk 1\n";
+
+  output.str("");
+  output.clear();
+  catalog.addCourse("TDT4102", "c++");
+  output << catalog;
   EXPECT_EQ(output.str(), expected);
 }
 

@@ -1,25 +1,31 @@
-#include "CourseCatalog.h"
+#include "courseCatalog.h"
+#include <fstream>
 #include <map>
+#include <sstream>
 #include <string>
+
+CourseCatalog::CourseCatalog() { loadFile(); }
 
 // oppgave 3 b
 
-void CourseCatalog::addCourse(std::string CourseCode, std::string CourseName) {
-  std::map<std::string, std::string> course =
+void CourseCatalog::addCourse(std::string courseCode, std::string courseName,
+                              bool save) {
+  std::pair<std::string, std::string> course =
       std::make_pair(courseCode, courseName);
-  auto result = Courses.insert(course);
+  auto result = courses.insert(course);
   if (!result.second) {
-    Courses[courseCode] = courseName;
+    courses[courseCode] = courseName;
   }
-  saveToFile(course)
+  if (save)
+    saveToFile(course);
 }
 
 void CourseCatalog::removeCourse(std::string courseCode) {
-  Courses.erase(courseCode);
+  courses.erase(courseCode);
 }
 
 std::string CourseCatalog::getCourse(std::string courseCode) {
-  return Courses.at(courseCode);
+  return courses.at(courseCode);
 }
 
 // oppgave 3 c
@@ -36,7 +42,7 @@ void CourseCatalog::saveToFile(std::pair<std::string, std::string> course,
                                std::string filename) {
   std::ofstream file;
   file.open(filename, std::ios::app);
-  file << course.first << "," << course.second << '\n';
+  file << course.second << "," << course.first << '\n';
   file.close();
 }
 
@@ -48,6 +54,8 @@ void CourseCatalog::loadFile(std::string filename) {
     std::string courseCode, courseName;
     std::getline(lineStream, courseCode, ','); // Use ',' as delimiter
     std::getline(lineStream, courseName);
-    addCourse(courseCode, courseName);
+    addCourse(courseCode, courseName, false);
   }
 }
+
+void CourseCatalog::clearCourses() { courses.clear(); }

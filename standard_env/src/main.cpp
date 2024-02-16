@@ -1,3 +1,4 @@
+#include "bouncingBall.h"
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -64,9 +65,28 @@ void showTask(int task, char subTask) {
     switch (subTask) {
     case 'a': {
       cout << "write to file" << endl;
-      writeToFile()
+      writeToFile();
 
-          break;
+      break;
+    }
+    case 'b': {
+      cout << "add line numbers" << endl;
+      addLineNumbers();
+      break;
+    }
+    default: {
+      cout << "invalid subtask" << endl;
+      break;
+    } break;
+    }
+  }
+  case 4: {
+    switch (subTask) {
+    case 'a': {
+      cout << "bouncing ball" << endl;
+      bouncingBall();
+
+      break;
     }
     default: {
       cout << "invalid subtask" << endl;
@@ -85,7 +105,11 @@ void showTask(int task, char subTask) {
 int main() {
 
   std::vector<std::pair<int, std::vector<char>>> tasks = {
-      {1, {'a', 'b', 'd', 'f'}},
+      {1,
+       {
+           'a',
+       }},
+      {4, {'a'}},
   };
 
   std::cout << "Vil du kjore alle oppgaver fra valgt oppgave? (ja/nei): ";
