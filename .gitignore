@@ -22,6 +22,7 @@ standard_env/meson-logs/
 *.log
 *.tmp
 *.temp
+*.cache
 
 # Ignore specific files in subprojects if they are build artifacts
 standard_env/subprojects/**/*.a

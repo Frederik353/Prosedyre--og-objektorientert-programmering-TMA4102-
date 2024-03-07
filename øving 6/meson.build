@@ -44,7 +44,10 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 
 inc_dirs = include_directories('./include')
 
-src = []
+src = [
+'./src/courseCatalog.cpp',
+'./src/bouncingBall.cpp',
+]
 
 exe = executable(
   'program',
@@ -64,7 +67,9 @@ gmock_dep  = gtest_proj.get_variable('gmock_dep')
 # inc_dirs = include_directories('tests')
 test_inc_dirs = include_directories('./tests/include')
 
-tests = []
+tests = [
+    './tests/courseCatalog_test.cpp',
+]
 
 test_executable = executable(
     'run_tests',
