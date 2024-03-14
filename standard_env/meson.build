@@ -44,14 +44,7 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 
 inc_dirs = include_directories('./include')
 
-src = [
-  'src/Animal.cpp',
-  'src/Cat.cpp',
-  'src/Dog.cpp',
-  'src/Emoji.cpp',
-  'src/Face.cpp',
-  'src/EmptyFace.cpp',
-]
+src = [ ]
 
 exe = executable(
   'program',
@@ -60,7 +53,6 @@ exe = executable(
   cpp_args : compiler_flags,
   include_directories: inc_dirs,
 )
-
 
 # ------------- tests ----------------
 
@@ -71,9 +63,7 @@ gmock_dep  = gtest_proj.get_variable('gmock_dep')
 # inc_dirs = include_directories('tests')
 test_inc_dirs = include_directories('./tests/include')
 
-tests = [
-    'tests/Animal_test.cpp',
-]
+tests = []
 
 test_executable = executable(
     'run_tests',
