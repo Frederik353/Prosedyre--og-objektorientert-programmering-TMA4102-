@@ -1,3 +1,4 @@
+#include "Matrix.h"
 #include <bits/stdc++.h>
 #include <iostream>
 
@@ -73,7 +74,36 @@ int main() {
   fib2(res2, len - 2);
   printArray(res2, 2);
 
+  std::cout << "------------------------------------------" << std::endl;
   createFibonacci();
+
+  Matrix m(10);
+  std::cout << m;
+
+  //   oppgave 5 c
+  Matrix A = Matrix(2, 2);
+  A[0][0] = 1.0;
+  A[0][1] = 2.0;
+  A[1][0] = 3.0;
+  A[1][1] = 4.0;
+  Matrix B = Matrix(2, 2);
+  B[0][0] = 4.0;
+  B[0][1] = 3.0;
+  B[1][0] = 2.0;
+  B[1][1] = 1.0;
+  Matrix C = Matrix(2, 2);
+  C[0][0] = 1.0;
+  C[0][1] = 3.0;
+  C[1][0] = 1.5;
+  C[1][1] = 2.0;
+  A += B + C;
+
+  std::cout << "------ A += B + C ------" << std::endl;
+  std::cout << A;
+  std::cout << "------------" << std::endl;
+  std::cout << B;
+  std::cout << "------------" << std::endl;
+  std::cout << C;
 
   return 0;
 }
