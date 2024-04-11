@@ -25,6 +25,7 @@ public:
   void open();
   void flag();
 
+  void resetTile();
   Cell getState() const { return _state; };
   bool hasMine() { return _isMine; };
   void setMine(bool isMine = true) { _isMine = isMine; };

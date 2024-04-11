@@ -48,3 +48,11 @@ void Tile::setAdjMines(int n) {
   set_label(num);
   set_label_color(minesToColor.at(n));
 }
+
+void Tile::resetTile() {
+  set_label("");
+  _state = Cell::closed;
+  _isMine = false;
+  setButtonColor(TDT4102::Color::silver);
+  //   dont need to change label color as this is always set when used
+}

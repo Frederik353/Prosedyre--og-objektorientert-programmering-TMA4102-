@@ -1,6 +1,7 @@
 #pragma once
 #include "AnimationWindow.h"
 #include "Tile.h"
+#include "widgets/Button.h"
 #include "widgets/TextInput.h"
 #include <string>
 
@@ -24,15 +25,17 @@ private:
   vector<shared_ptr<Tile>> tiles; // Vektor som inneholder alle tiles
   int _openedTilesCount{0};
   int _flaggedTilesCount{0};
-  bool _lost = false;
-  bool _restart = true;
+  bool _frozen = false;
   shared_ptr<TextInput> _textField;
   shared_ptr<TextInput> _minesLeftBox;
+  shared_ptr<Button> _resetBtn;
 
   // hoyde og bredde i piksler
   int Height() const { return height * cellSize; }
   int Width() const { return width * cellSize; }
   void setMessage(std::string m);
+  void distributeMines();
+  void resetTiles();
 
   // Returnerer en vektor med nabotilene rundt en tile, der hver tile
   // representeres som et punkt
@@ -60,4 +63,6 @@ private:
 
   // callback funksjoner til Tile knappene
   void cb_click();
+
+  void reset();
 };

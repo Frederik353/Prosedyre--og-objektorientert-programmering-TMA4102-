@@ -9,22 +9,28 @@ MinesweeperWindow::MinesweeperWindow(int x, int y, int width, int height,
                                      int mines, const string &title)
     : // Initialiser medlemsvariabler, bruker konstruktoren til
       // AnimationWindow-klassen
+      AnimationWindow{x, y, (width * cellSize) + 5, (height + 1) * cellSize + 5,
+                      title},
       width{width}, height{height}, _mineCount{mines} {
-  _textField = std::make_shared<TextInput>(
-      Point{
-          static_cast<int>((width * cellSize) / 2 - (width * cellSize) / 4),
-          static_cast<int>((height * cellSize) / 2 - (height * cellSize) / 4)},
-      static_cast<unsigned int>(width * cellSize / 2),
-      static_cast<unsigned int>(height * cellSize / 4), "");
 
+  int toolbarPosY = height * cellSize + 5;
+
+  _textField = std::make_shared<TextInput>(Point{-5, toolbarPosY}, 120, 5, "");
+
+  _textField->setVisible(false);
   add(*_textField);
 
   std::string baseText = "Mines left: ";
   std::string fullText = baseText + std::to_string(mines);
 
-  _minesLeftBox =
-      std::make_shared<TextInput>(Point{width - 30, 20}, 30, 10, fullText);
+  _minesLeftBox = std::make_shared<TextInput>(
+      Point{(width * cellSize) - 120, toolbarPosY}, 140, 5, fullText);
   add(*_minesLeftBox);
+
+  _resetBtn = std::make_shared<Button>(Point{95, toolbarPosY}, 110, 5, "");
+  _resetBtn->setCallback(std::bind(&MinesweeperWindow::reset, this));
+  _resetBtn->setVisible(false);
+  add(*_resetBtn);
 
   // Legg til alle tiles i vinduet
   for (int i = 0; i < height; ++i) {
@@ -35,30 +41,7 @@ MinesweeperWindow::MinesweeperWindow(int x, int y, int width, int height,
       add(*temp);
     }
   }
-  std::random_device rd;
-  std::mt19937 eng(rd());
-
-  int placedMines = 0;
-  std::uniform_int_distribution<int> distrWidth(0, width - 1);
-  std::uniform_int_distribution<int> distrHeight(0, height - 1);
-
-  while (placedMines < _mineCount) {
-    int x = distrWidth(eng);
-    int y = distrHeight(eng);
-    // if (!tiles[y * width + x]->hasMine()) {
-    //   Point p{x, y};
-    //   at(Point{x, y})->setMine();
-    //   placedMines++;
-    // }
-
-    int index = y * width + x;
-    Tile *tile = tiles[index].get();
-
-    if (!tile->hasMine()) {
-      tile->setMine();
-      placedMines++;
-    }
-  }
+  distributeMines();
 }
 
 int MinesweeperWindow::countMines(vector<Point> coords) const {
@@ -89,7 +72,8 @@ vector<Point> MinesweeperWindow::adjacentPoints(Point xy) const {
 }
 
 void MinesweeperWindow::openTile(Point xy) {
-  if (at(xy)->getState() != Cell::closed || _lost) {
+
+  if (at(xy)->getState() != Cell::closed || _frozen) {
     return;
   }
 
@@ -97,12 +81,19 @@ void MinesweeperWindow::openTile(Point xy) {
   _openedTilesCount++;
 
   if (at(xy)->hasMine()) {
-    _lost = true;
+    _frozen = true;
     setMessage("You Lost");
     for (auto t : tiles) {
+
+      if (t->getState() == Cell::flagged || t->hasMine()) {
+        t->setLabelColor(TDT4102::Color::red);
+      }
+
       if (t->hasMine()) {
         if (t->getState() == Cell::flagged) {
-          t->flag();
+          //   t->flag();
+          t->set_label("V");
+          t->setLabelColor(TDT4102::Color::green);
         }
         t->open();
       }
@@ -140,7 +131,10 @@ void MinesweeperWindow::setMessage(std::string m) {
   //   textHeight, m);
   //   std::cout << x << " " << y << " " << width << " " << height << " " << m
   //   << std::endl; _textField =
+
+  _textField->setVisible(true);
   _textField->setText(m);
+  _resetBtn->setVisible(true);
 }
 
 bool MinesweeperWindow::won() {
@@ -152,9 +146,9 @@ bool MinesweeperWindow::won() {
 
 void MinesweeperWindow::updateMinesLeft() {
   std::string baseText = "Mines left: ";
-  std::string fullText = baseText + std::to_string(_flaggedTilesCount);
+  std::string fullText =
+      baseText + std::to_string(_mineCount - _flaggedTilesCount);
   _minesLeftBox->setText(fullText);
-  std::cout << fullText << std::endl;
 }
 
 void MinesweeperWindow::flagTile(Point xy) {
@@ -180,4 +174,41 @@ void MinesweeperWindow::cb_click() {
   } else if (this->is_right_mouse_button_down()) {
     flagTile(xy);
   }
+}
+
+void MinesweeperWindow::distributeMines() {
+  std::random_device rd;
+  std::mt19937 eng(rd());
+
+  int placedMines = 0;
+  std::uniform_int_distribution<int> distrWidth(0, width - 1);
+  std::uniform_int_distribution<int> distrHeight(0, height - 1);
+
+  while (placedMines < _mineCount) {
+    int x = distrWidth(eng);
+    int y = distrHeight(eng);
+    int index = y * width + x;
+    Tile *tile = tiles[index].get();
+
+    if (!tile->hasMine()) {
+      tile->setMine();
+      placedMines++;
+    }
+  }
+}
+
+void MinesweeperWindow::resetTiles() {
+  for (auto t : tiles) {
+    t->resetTile();
+  }
+}
+
+void MinesweeperWindow::reset() {
+  _textField->setVisible(false);
+  _resetBtn->setVisible(false);
+  resetTiles();
+  distributeMines();
+  _frozen = false;
+  _openedTilesCount = 0;
+  _flaggedTilesCount = 0;
 }
