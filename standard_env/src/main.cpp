@@ -1,15 +1,14 @@
-#include "Car.h"
-#include "MeetingWindow.h"
-#include "Person.h"
-#include <iostream>
+#include "MinesweeperWindow.h"
 
 int main() {
-  Car car(10);
-  Person person("Jhon doe", "Joe@gmail.com");
-  std::cout << person << std::endl;
-  MeetingWindow win{100, 100, 600, 400, "MeetingWindow"};
+  constexpr int width = 10;
+  constexpr int height = 10;
+  constexpr int mines = 3;
 
-  win.wait_for_close();
+  Point startPoint{200, 300};
+  MinesweeperWindow mw{startPoint.x, startPoint.y, width,
+                       height,       mines,        "Minesweeper"};
+  mw.wait_for_close();
 
   return 0;
 }
