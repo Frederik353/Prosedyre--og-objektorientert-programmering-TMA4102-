@@ -44,18 +44,9 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 
 inc_dirs = include_directories('./include')
 
-src = [ 
-<<<<<<< HEAD
-<<<<<<< HEAD
+src = [
 './src/MinesweeperWindow.cpp',
-'./src/Tile.cpp'
-=======
-  'src/Matrix.cpp',
->>>>>>> 9f68d2af774a82832a9195216befe9382088acac
-=======
-'./src/MinesweeperWindow.cpp',
-'./src/Tile.cpp'
->>>>>>> 57640ad88dc2440d67986f8f5900065b7927eea4
+'./src/Tile.cpp',
 ]
 
 exe = executable(
