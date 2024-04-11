@@ -1,6 +1,3 @@
-# ignore standard_env for now as i cant get it to work reliably
-# standard_env
-
 # Ignore build output directory
 standard_env/builddir/
 
@@ -14,7 +11,6 @@ standard_env/meson-logs/
 *.o
 *.obj
 *.exe
-*.dll
 *.a
 *.lib
 *.so
@@ -23,23 +19,6 @@ standard_env/meson-logs/
 *.tmp
 *.temp
 *.cache
-
-# Ignore specific files in subprojects if they are build artifacts
-standard_env/subprojects/**/*.a
-standard_env/subprojects/**/*.o
-standard_env/subprojects/**/*.obj
-standard_env/subprojects/**/*.dll
-standard_env/subprojects/**/*.exe
-
-# Ignore OS generated files
-.DS_Store
-Thumbs.db
-
-# Ignore other unnecessary files
-*.hgignore
-*.ninja_deps
-*.ninja_log
-compile_commands.json
 
 # Ignore specific directories in subprojects if not needed
 # (Uncomment if applicable)
@@ -50,3 +29,5 @@ compile_commands.json
 !.vscode/
 
 !/missing_files/*.dll
+!/missing_files/*.dll
+!/standard_env/subprojects/*
