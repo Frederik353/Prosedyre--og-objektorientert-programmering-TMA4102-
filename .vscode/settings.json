@@ -19,5 +19,6 @@
         "type_traits": "cpp",
         "utility": "cpp"
     },
-    "C_Cpp.default.compileCommands": "e:\\random\\prosedyre og objekt cpp\\standard_env\\builddir/compile_commands.json"
+    "C_Cpp.default.compileCommands": "e:\\random\\prosedyre og objekt cpp\\standard_env\\builddir/compile_commands.json",
+    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
 }
