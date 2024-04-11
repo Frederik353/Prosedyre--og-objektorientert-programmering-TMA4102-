@@ -46,6 +46,5 @@ void Tile::flag() {
 void Tile::setAdjMines(int n) {
   std::string num = std::to_string(n);
   set_label(num);
-
   set_label_color(minesToColor.at(n));
 }

@@ -45,17 +45,7 @@ animationwindow_dep = subproject('animationwindow').get_variable('animationwindo
 inc_dirs = include_directories('./include')
 
 src = [ 
-<<<<<<< HEAD
-<<<<<<< HEAD
-'./src/MinesweeperWindow.cpp',
-'./src/Tile.cpp'
-=======
   'src/Matrix.cpp',
->>>>>>> 9f68d2af774a82832a9195216befe9382088acac
-=======
-'./src/MinesweeperWindow.cpp',
-'./src/Tile.cpp'
->>>>>>> 57640ad88dc2440d67986f8f5900065b7927eea4
 ]
 
 exe = executable(
@@ -75,10 +65,12 @@ gmock_dep  = gtest_proj.get_variable('gmock_dep')
 # inc_dirs = include_directories('tests')
 test_inc_dirs = include_directories('./tests/include')
 
-tests = []
+tests = [
+    './tests/Matrix_test.cpp'
+]
 
 test_executable = executable(
-    'run_tests',
+    'tests',
     [tests, src],
     dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep, gtest_dep, gmock_dep],
     include_directories: [test_inc_dirs, inc_dirs]

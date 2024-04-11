@@ -1,7 +1,10 @@
 #pragma once
 #include "AnimationWindow.h"
 #include "widgets/Button.h"
+<<<<<<< HEAD
 #include <iostream>
+=======
+>>>>>>> 57640ad88dc2440d67986f8f5900065b7927eea4
 #include <map>
 
 // De forskjellige tilstandene en Tile kan vaere i
@@ -24,11 +27,6 @@ private:
 public:
   Tile(TDT4102::Point pos, int size);
 
-  void open();
-  void flag();
-
-  Cell getState() const { return _state; };
-  bool hasMine() { return _isMine; };
   void setMine(bool isMine = true) { _isMine = isMine; };
   void setAdjMines(int n);
 };
