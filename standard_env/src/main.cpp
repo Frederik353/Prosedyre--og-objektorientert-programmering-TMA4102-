@@ -4,19 +4,19 @@
 #include <iostream>
 #include <vector>
 
-constexpr int size = 10000;
+// constexpr int size = 10000;
 
 int main() {
   Stopwatch stopwatch = Stopwatch();
 
   stopwatch.start();
-//   for (int i = 0; i < 10; i++){
-  optimizationTask();
-//   }
+  for (int i = 0; i < 10; i++){
+    optimizationTask();
+  }
 
   double time = stopwatch.stop();
 
-  std::cout << "time: " << time << " s" << std::endl;
+  std::cout << "time: " << time  / 10 << " s" << std::endl;
 
   return 0;
 }
@@ -228,4 +228,38 @@ int main() {
 
 // pass by reference diagonal
 // time: 2.01439 s
+
+// remove temp value, use direct acces [] instead of .at to skip bounds check
+// time: 1.57427 s
+
+// tried reserve and emplace back but still slower since emplace back still checks for resize even though it does not bound check
+// time: 4.17163 s
+/*
+int current = 0;
+    for (int i = 0; i < maxColIndex+1; i++){
+        for (int j = 0; j < current; j++){
+            matrix.emplace_back(0);
+        }
+        matrix.emplace_back(newValue);
+        for (int j = current; j < maxColIndex + 1; j++){
+            matrix.emplace_back(0);
+        }
+        current++;
+    }
+*/
+
+
+// before compiler optimizations
+// avg 10 time: 1.41252 s
+
+// after
+// avg 10 time: 0.543524 s
+
+// builtin  execution and reduce cpp
+// avg 10 time: 0.368671 s
+
+// med adx multithreading og float 
+// men får feil pga float
+// TDT4102.02
+// time: 0.23552 s
 

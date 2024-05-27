@@ -26,6 +26,8 @@ endif
 
 
 
+
+
 # ---------------- my setup ----------------
 
 # configure_file(input: './missing_files/libstdc++-6.dll', output: 'libstdc++-6.dll', copy: true)
@@ -42,6 +44,7 @@ std_lib_facilities_dep = std_lib_facilities_dep.get_variable('std_lib_facilities
 animationwindow_dep = subproject('animationwindow').get_variable('animationwindow_dep')
 
 
+
 inc_dirs = include_directories('./include')
 
 src = [
@@ -52,9 +55,11 @@ src = [
 exe = executable(
   'program',
   [src, './src/main.cpp'],
-  dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep],
-  cpp_args : compiler_flags,
+  dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep], 
+  cpp_args : compiler_flags + ['-march=native', '-O3', '-fopenmp'],
+  link_args : ['-flto'],
   include_directories: inc_dirs,
+    install: true,
 )
 
 # ------------- tests ----------------
@@ -72,7 +77,10 @@ test_executable = executable(
     'run_tests',
     [tests, src],
     dependencies : [animationwindow_dep, sdl2_dep, std_lib_facilities_dep, gtest_dep, gmock_dep],
-    include_directories: [test_inc_dirs, inc_dirs]
+    cpp_args : compiler_flags + ['-march=native', '-O3', '-fopenmp'],
+    link_args : ['-flto'],
+    include_directories: [test_inc_dirs, inc_dirs],
+    install:true,
 )
 
 
